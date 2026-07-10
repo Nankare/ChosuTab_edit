@@ -1,0 +1,78 @@
+/* メイン設定 */
+@font-face {
+    font-family: yomogi;
+    src: url(/Yomogi-Regular.ttf);
+}
+:root {
+    --bg: #0f1115;
+    --text: white;
+    --accent: #4cc2ff;
+
+    --radius: 16px;
+    --blur: 20px;
+}
+body{
+    font-family: yomogi;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 背景 */
+#background {
+    position: fixed;
+    inset: 0;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}
+
+/* 検索バー */
+#search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+}
+#search-box {
+    width: min(600px, 80vw);
+    padding: 16px 24px;
+
+    border: none;
+    border-radius: 999px;
+
+    font-size: 18px;
+    font-family: yomogi;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+
+    color: white;
+    outline: none;
+}
+
+/* 時計 */
+.clock-widget {
+    position: fixed;
+
+    bottom: -30px;
+    left: -20px;
+
+    padding: 25px 40px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+}
+#clock {
+    letter-spacing: 3px;
+    transform: translateY(-15px);
+}
