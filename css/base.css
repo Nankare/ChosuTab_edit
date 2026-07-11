@@ -55,6 +55,12 @@ main {
     outline: none;
 
     text-shadow: 0 1px 3px black;
+
+    
+}
+
+::placeholder {
+    color: rgba(255,255,255,0.8);
 }
 
 /* 時計 */
