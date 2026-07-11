@@ -28,3 +28,25 @@ chrome.storage.onChanged.addListener((changes, area) => {
             `url("${changes.backgroundImage.newValue}")`;
     }
 });
+
+// ① 要素を取得
+const shortcutsContainer = document.getElementById("shortcuts");
+
+// ② 初回読み込み
+chrome.storage.local.get(["showShortcuts"], (data) => {
+    console.log("showShortcuts =", data.showShortcuts);
+
+    shortcutsContainer.hidden = !(data.showShortcuts ?? true);
+
+    console.log("hidden =", shortcutsContainer.hidden);
+});
+
+// ③ 設定が変わったら即反映
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+
+    if (changes.showShortcuts) {
+        console.log(changes.showShortcuts.newValue);
+        shortcutsContainer.hidden = !changes.showShortcuts.newValue;
+    }
+});

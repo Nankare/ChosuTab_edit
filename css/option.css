@@ -1,0 +1,22 @@
+/* メイン設定 */
+@font-face {
+    font-family: yomogi;
+    src: url(/Yomogi-Regular.ttf);
+}
+body {
+    background: #202124;
+    color: white;
+    font-family: yomogi;
+
+    margin: 0;
+}
+
+main {
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.08);
+}

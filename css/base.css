@@ -60,7 +60,7 @@ main {
     position: fixed;
 
     bottom: -30px;
-    left: -20px;
+    right: -20px;
 
     padding: 25px 40px;
     border-radius: 20px;
@@ -75,4 +75,46 @@ main {
 #clock {
     letter-spacing: 3px;
     transform: translateY(-15px);
+}
+
+/* ショトカ */
+#shortcuts {
+    position: fixed;
+
+    left: 15px;
+    bottom: 30px;
+
+    display: flex;
+    flex-direction: column; /* ← 横から縦に！ */
+    flex-wrap: wrap;
+    gap: 7px;
+
+    max-width: 400px;
+}
+
+#shortcuts a {
+    padding: 10px 108px;
+
+    background: rgba(255,255,255,.15);
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+
+    transition: .2s;
+}
+
+#shortcuts a:hover {
+    background: rgba(255,255,255,.3);
+    transform: translateY(-2px);
+}
+
+#shortcuts span{
+    margin-left: 4px;
+}
+
+#shortcuts[hidden] {
+    display: none;
 }

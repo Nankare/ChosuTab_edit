@@ -1,6 +1,8 @@
 const showClock = document.getElementById("showClock");
 const showSeconds = document.getElementById("showSeconds");
 const input = document.getElementById("backgroundFile");
+const showShortcuts = document.getElementById("showShortcuts");
+
 
 showClock.addEventListener("change", () => {
     chrome.storage.local.set({
@@ -37,4 +39,14 @@ input.addEventListener("change", () => {
     };
 
     reader.readAsDataURL(file);
+});
+
+showShortcuts.addEventListener("change", () => {
+    chrome.storage.local.set({
+        showShortcuts: showShortcuts.checked
+    });
+});
+
+chrome.storage.local.get(["showShortcuts"], (data) => {
+    showShortcuts.checked = data.showShortcuts ?? true;
 });
