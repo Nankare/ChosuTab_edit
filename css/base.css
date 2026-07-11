@@ -48,11 +48,13 @@ main {
     font-size: 18px;
     font-family: yomogi;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(12px);
 
     color: white;
     outline: none;
+
+    text-shadow: 0 1px 3px black;
 }
 
 /* 時計 */
@@ -65,7 +67,7 @@ main {
     padding: 25px 40px;
     border-radius: 20px;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(10px);
 
     color: white;
@@ -95,8 +97,6 @@ main {
 #shortcuts a {
     padding: 10px 108px;
 
-    background: rgba(255,255,255,.15);
-    color: white;
     text-decoration: none;
     font-size: 20px;
 
@@ -104,6 +104,12 @@ main {
     backdrop-filter: blur(10px);
 
     transition: .2s;
+
+    color: white;
+
+    background: rgba(20, 20, 30, 0.45);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 2px 5px black;
 }
 
 #shortcuts a:hover {
