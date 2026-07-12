@@ -160,7 +160,8 @@ clearShortcuts.addEventListener("click", () => {
         shortcuts: null,
         backgroundImage: null,
         widgetColor: null,
-        widgetOpacity: null
+        widgetOpacity: null,
+        font: null
         });
         alert("初期化したのでページを更新してね")
     } else {
