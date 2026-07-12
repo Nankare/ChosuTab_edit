@@ -82,7 +82,7 @@ function createShortcutEditor(name = "", url = "") {
     const urlInput = document.createElement("input");
 
     urlInput.type = "url";
-    urlInput.placeholder = "URL";
+    urlInput.placeholder = "https://example.com";
     urlInput.value = url;
 
     div.appendChild(urlInput);
@@ -120,14 +120,43 @@ saveShortcuts.addEventListener("click", () => {
     for (const editor of editors) {
         const inputs = editor.querySelectorAll("input");
 
+        let url = inputs[1].value.trim();
+
+        if (url !== "" &&
+            !url.startsWith("http://") &&
+            !url.startsWith("https://")) {
+            alert("URLはhttp://またはhttps://から入力してください");
+            return;
+            }
+
         shortcuts.push({
             name: inputs[0].value,
-            url: inputs[1].value
+            url: url,
         });
     }
 
     chrome.storage.local.set({
-        shortcuts: shortcuts
+        shortcuts: shortcuts.filter(shortcut => shortcut.url !== "")
     });
+
+});
+
+//初期化
+clearShortcuts.addEventListener("click", () => {
+
+    const shortcuts = [];
+    const result = confirm("ショトカ初期化する？");
+
+    if (result) {
+        // OK（Yes）が押された
+        console.log("初期化する");
+        chrome.storage.local.set({
+        shortcuts: shortcuts.filter(shortcut => shortcut.url !== "")
+        });
+        alert("初期化したのでページを更新してね")
+    } else {
+        // キャンセル（No）が押された
+        console.log("キャンセル");
+    }
 
 });

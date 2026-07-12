@@ -12,7 +12,7 @@
     </header>
     <main>
         
-        <h2>===時計===</h2>
+        <h2>===🕑時計===</h2>
         <label>
             <input type="checkbox" id="showClock">
             時計を表示
@@ -23,27 +23,34 @@
             秒を表示
         </label>
 
-        <h2>===背景===</h2>
+        <h2>===🖼️背景===</h2>
         <h3>背景を変更</h3>
             <input type="file" id="backgroundFile" accept="image/*">
 
-        <h2>===ショートカット===</h2>
+        <h2>===🔗ショートカット===</h2>
         <label>
             <input type="checkbox" id="showShortcuts">
             ショートカットを表示
         </label>
 
-        <h2>===ショートカット===</h2>
+        <div id="shortcut-list"></div>
 
-            <div id="shortcut-list"></div>
+        <button id="addShortcut">
+            ＋追加
+        </button>
 
-            <button id="addShortcut">
-                ＋追加
-            </button>
+        <button id="saveShortcuts">
+            保存
+        </button>
 
-            <button id="saveShortcuts">
-                保存
-            </button>
+        <button id="clearShortcuts">
+            初期化
+        </button>
+
+        <p>
+            ※URLは https:// または http:// から入力してください
+        </p>
+        
 
     </main>
     <footer>
