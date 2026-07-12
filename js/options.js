@@ -158,12 +158,58 @@ clearShortcuts.addEventListener("click", () => {
         showClock:null,
         showSeconds:null,
         shortcuts: null,
-        backgroundImage: null
+        backgroundImage: null,
+        widgetColor: null,
+        widgetOpacity: null
         });
         alert("初期化したのでページを更新してね")
     } else {
         // キャンセル（No）が押された
         console.log("キャンセル");
     }
+
+});
+
+//theme
+//color
+const widgetColor = document.getElementById("widgetColor");
+const widgetOpacity = document.getElementById("widgetOpacity");
+
+widgetColor.addEventListener("change", saveWidgetStyle);
+widgetOpacity.addEventListener("input", saveWidgetStyle);
+
+function saveWidgetStyle() {
+    chrome.storage.local.set({
+        widgetColor: widgetColor.value,
+        widgetOpacity: widgetOpacity.value
+    });
+}
+
+chrome.storage.local.get(
+    ["widgetColor", "widgetOpacity"],
+    (data) => {
+
+        widgetColor.value =
+            data.widgetColor ?? "#282828";
+
+        widgetOpacity.value =
+            data.widgetOpacity ?? 40;
+    }
+);
+
+//font
+const font = document.getElementById("font");
+
+font.addEventListener("change", () => {
+    chrome.storage.local.set({
+        font: font.value
+    });
+});
+
+chrome.storage.local.get(["font"], (data) => {
+
+    const selectedFont = data.font ?? "yomogi";
+
+    font.value = selectedFont;
 
 });

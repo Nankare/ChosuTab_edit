@@ -1,8 +1,17 @@
-/* メイン設定 */
+/*フォントせってい*/
 @font-face {
     font-family: yomogi;
-    src: url(/Yomogi-Regular.ttf);
+    src: url(/fonts/Yomogi-Regular.ttf);
 }
+@font-face {
+    font-family: keifont;
+    src: url(/fonts/keifont.ttf);
+}
+@font-face {
+    font-family: mushin;
+    src: url(/fonts/mushin.otf);
+}
+/* メイン設定 */
 :root {
     --bg: #0f1115;
     --text: white;
@@ -10,9 +19,13 @@
 
     --radius: 16px;
     --blur: 20px;
+
+    --font: yomogi;
+    --widget-bg: rgba(40, 40, 40, 0.4);
+
 }
 body{
-    font-family: yomogi;
+    font-family: var(--font);
 }
 main {
     display: flex;
@@ -48,7 +61,6 @@ main {
     font-size: 18px;
     font-family: yomogi;
 
-    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(12px);
 
     color: white;
@@ -73,7 +85,6 @@ main {
     padding: 25px 40px;
     border-radius: 20px;
 
-    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(10px);
 
     color: white;
@@ -113,7 +124,6 @@ main {
 
     color: white;
 
-    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(10px);
     text-shadow: 0 2px 5px black;
 }
@@ -141,7 +151,6 @@ main {
     padding:  10px 40px 15px;
     border-radius: 20px;
 
-    background: rgba(20, 20, 30, 0.45);
     backdrop-filter: blur(10px);
 
     color: white;
@@ -150,4 +159,8 @@ main {
 
     letter-spacing: 3px;
     transform: translateY(-15px);
+}
+
+.widget {
+    background: var(--widget-bg);
 }

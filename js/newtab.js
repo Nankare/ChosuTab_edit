@@ -62,3 +62,64 @@ chrome.storage.onChanged.addListener((changes, area) => {
     document.getElementById("date").style.display =
         changes.showDate.newValue ? "" : "none";
 });
+
+
+//themeColor
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    return `${r}, ${g}, ${b}`;
+}
+
+chrome.storage.local.get(
+    ["widgetColor", "widgetOpacity"],
+    (data) => {
+
+        const color = data.widgetColor ?? "#282828";
+        const opacity = (data.widgetOpacity ?? 40) / 100;
+
+        document.documentElement.style.setProperty(
+            "--widget-bg",
+            `rgba(${hexToRgb(color)}, ${opacity})`
+        );
+    }
+);
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+
+    chrome.storage.local.get(
+        ["widgetColor", "widgetOpacity"],
+        (data) => {
+
+            const color = data.widgetColor ?? "#282828";
+            const opacity = (data.widgetOpacity ?? 40) / 100;
+
+            document.documentElement.style.setProperty(
+                "--widget-bg",
+                `rgba(${hexToRgb(color)}, ${opacity})`
+            );
+        }
+    );
+});
+
+//font
+chrome.storage.local.get(["font"], (data) => {
+
+    document.documentElement.style.setProperty(
+        "--font",
+        data.font ?? "yomogi"
+    );
+
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" || !changes.font) return;
+
+    document.documentElement.style.setProperty(
+        "--font",
+        changes.font.newValue
+    );
+});

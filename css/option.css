@@ -1,7 +1,7 @@
 /* メイン設定 */
 @font-face {
     font-family: yomogi;
-    src: url(/Yomogi-Regular.ttf);
+    src: url(/fonts/Yomogi-Regular.ttf);
 }
 body {
     background: #202124;

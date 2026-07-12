@@ -27,6 +27,7 @@ chrome.storage.local.get(["shortcuts"], (data) => {
     const a = document.createElement("a");
     a.href = shortcut.url;
     a.target = "_blank";
+    a.className = "widget";
 
     const img = document.createElement("img");
     img.src = `https://www.google.com/s2/favicons?domain=${host}&sz=16`;
