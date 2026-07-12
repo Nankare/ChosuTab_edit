@@ -20,3 +20,20 @@ main {
 
     background: rgba(255,255,255,.08);
 }
+
+.shortcut-setting {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 24px;
+}
+
+.shortcut-setting input {
+    padding: 8px;
+}
+
+a{
+    color: blueviolet;
+}

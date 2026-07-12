@@ -50,3 +50,5 @@ chrome.storage.onChanged.addListener((changes, area) => {
         shortcutsContainer.hidden = !changes.showShortcuts.newValue;
     }
 });
+
+

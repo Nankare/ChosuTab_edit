@@ -3,6 +3,11 @@ const showSeconds = document.getElementById("showSeconds");
 const input = document.getElementById("backgroundFile");
 const showShortcuts = document.getElementById("showShortcuts");
 
+const shortcutList = document.getElementById("shortcut-list");
+const addShortcut = document.getElementById("addShortcut");
+
+const saveShortcuts = document.getElementById("saveShortcuts");
+
 
 showClock.addEventListener("change", () => {
     chrome.storage.local.set({
@@ -49,4 +54,80 @@ showShortcuts.addEventListener("change", () => {
 
 chrome.storage.local.get(["showShortcuts"], (data) => {
     showShortcuts.checked = data.showShortcuts ?? true;
+});
+
+function createShortcutEditor(name = "", url = "") {
+
+    const div = document.createElement("div");
+    div.className = "shortcut-setting";
+
+    shortcutList.appendChild(div);
+
+    //title
+    const title = document.createElement("h3");
+    title.textContent = "ショートカット";
+
+    div.appendChild(title);
+
+    //nameInput
+    const nameInput = document.createElement("input");
+
+    nameInput.type = "text";
+    nameInput.placeholder = "名前";
+    nameInput.value = name;4
+
+    div.appendChild(nameInput); 
+
+    //urlInput
+    const urlInput = document.createElement("input");
+
+    urlInput.type = "url";
+    urlInput.placeholder = "URL";
+    urlInput.value = url;
+
+    div.appendChild(urlInput);
+
+    //実行
+    shortcutList.appendChild(div);
+}
+
+//ロード
+chrome.storage.local.get(["shortcuts"], (data) => {
+
+    const shortcuts = data.shortcuts ?? [];
+
+    for (const shortcut of shortcuts) {
+        createShortcutEditor(
+            shortcut.name,
+            shortcut.url
+        );
+    }
+
+});
+
+//入力欄の追加
+addShortcut.addEventListener("click", () => {
+    createShortcutEditor("", "");
+});
+
+
+//保存
+saveShortcuts.addEventListener("click", () => {
+
+    const editors = document.querySelectorAll(".shortcut-setting");
+    const shortcuts = [];
+
+    for (const editor of editors) {
+        const inputs = editor.querySelectorAll("input");
+
+        shortcuts.push({
+            name: inputs[0].value,
+            url: inputs[1].value
+        });
+    }
+
+    chrome.storage.local.set({
+        shortcuts: shortcuts
+    });
+
 });

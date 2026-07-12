@@ -1,25 +1,27 @@
-const shortcuts = [
-    {
-        name: "YouTube",
-        url: "https://www.youtube.com"
-    },
-    {
-        name: "X",
-        url: "https://x.com"
-    },
-    {
-        name: "Gmail",
-        url: "https://gmail.com"
-    },
-    {
-        name: "ChatGPT",
-        url: "https://chatgpt.com"
-    },
-];
+chrome.storage.local.get(["shortcuts"], (data) => {
 
-const container = document.getElementById("shortcuts");
+    const shortcuts = data.shortcuts ?? [
+        {
+            name: "YouTube",
+            url: "https://www.youtube.com"
+        },
+        {
+            name: "X",
+            url: "https://x.com"
+        },
+        {
+            name: "Gmail",
+            url: "https://gmail.com"
+        },
+        {
+            name: "ChatGPT",
+            url: "https://chatgpt.com"
+        },
+    ];
+    // ここに今あるfor文
+    const container = document.getElementById("shortcuts");
 
-for (const shortcut of shortcuts) {
+    for (const shortcut of shortcuts) {
     const host = new URL(shortcut.url).hostname;
 
     const a = document.createElement("a");
@@ -35,3 +37,6 @@ for (const shortcut of shortcuts) {
     a.append(img, span);
     container.appendChild(a);
 }
+});
+
+
