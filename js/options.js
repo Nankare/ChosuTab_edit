@@ -142,6 +142,7 @@ saveShortcuts.addEventListener("click", () => {
 });
 
 //初期化
+//後で設定全初期化に変える
 clearShortcuts.addEventListener("click", () => {
 
     const shortcuts = [];
