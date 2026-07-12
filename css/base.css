@@ -61,8 +61,6 @@ main {
     font-size: 18px;
     font-family: yomogi;
 
-    backdrop-filter: blur(12px);
-
     color: white;
     outline: none;
 
@@ -84,8 +82,6 @@ main {
 
     padding: 25px 40px;
     border-radius: 20px;
-
-    backdrop-filter: blur(10px);
 
     color: white;
     font-size: 48px;
@@ -118,13 +114,10 @@ main {
     font-size: 20px;
 
     border-radius: 12px;
-    backdrop-filter: blur(10px);
 
     transition: .2s;
 
     color: white;
-
-    backdrop-filter: blur(10px);
     text-shadow: 0 2px 5px black;
 }
 
@@ -151,8 +144,6 @@ main {
     padding:  10px 40px 15px;
     border-radius: 20px;
 
-    backdrop-filter: blur(10px);
-
     color: white;
     font-size: 32px;
     font-weight: bold;
@@ -163,4 +154,5 @@ main {
 
 .widget {
     background: var(--widget-bg);
+    backdrop-filter: blur(10px);
 }
