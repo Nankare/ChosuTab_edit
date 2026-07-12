@@ -52,3 +52,17 @@ chrome.storage.onChanged.addListener((changes, area) => {
 });
 
 
+chrome.storage.local.get(["showDate"], (changes, data) => {
+
+    document.querySelector("#date").style.display = changes.showDate.newValue ? "" : "none";
+
+});
+
+let showDate = true;
+    chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" || !changes.showDate) return;
+
+    document.querySelector("#date").style.display =
+        changes.showDate.newValue ? "" : "none";
+    });
+

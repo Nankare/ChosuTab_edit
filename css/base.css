@@ -130,3 +130,24 @@ main {
 #shortcuts[hidden] {
     display: none;
 }
+
+/* 日付 */
+#date {
+    position: fixed;
+
+    bottom: 60px;
+    right: -10px;
+
+    padding:  10px 40px 15px;
+    border-radius: 20px;
+
+    background: rgba(20, 20, 30, 0.45);
+    backdrop-filter: blur(10px);
+
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+    transform: translateY(-15px);
+}
