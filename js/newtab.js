@@ -51,18 +51,14 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
 });
 
-
-chrome.storage.local.get(["showDate"], (changes, data) => {
-
-    document.querySelector("#date").style.display = changes.showDate.newValue ? "" : "none";
-
+chrome.storage.local.get(["showDate"], (data) => {
+    document.getElementById("date").style.display =
+        (data.showDate ?? true) ? "" : "none";
 });
 
-let showDate = true;
-    chrome.storage.onChanged.addListener((changes, area) => {
+chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "local" || !changes.showDate) return;
 
-    document.querySelector("#date").style.display =
+    document.getElementById("date").style.display =
         changes.showDate.newValue ? "" : "none";
-    });
-
+});

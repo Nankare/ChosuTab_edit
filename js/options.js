@@ -29,11 +29,12 @@ showDate.addEventListener("change", () => {
 });
 
 chrome.storage.local.get(
-    ["showClock", "showSeconds", "showDate"],
+    ["showClock", "showSeconds", "showDate", "showShortcuts"],
     (data) => {
         showClock.checked = data.showClock ?? true;
         showSeconds.checked = data.showSeconds ?? true;
         showDate.checked = data.showDate ?? true;
+        showShortcuts.checked = data.showShortcuts ?? true;
     }
 );
 
@@ -58,10 +59,6 @@ showShortcuts.addEventListener("change", () => {
     chrome.storage.local.set({
         showShortcuts: showShortcuts.checked
     });
-});
-
-chrome.storage.local.get(["showShortcuts"], (data) => {
-    showShortcuts.checked = data.showShortcuts ?? true;
 });
 
 function createShortcutEditor(name = "", url = "") {
