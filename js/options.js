@@ -142,17 +142,18 @@ saveShortcuts.addEventListener("click", () => {
 });
 
 //初期化
-//後で設定全初期化に変える
 clearShortcuts.addEventListener("click", () => {
 
-    const shortcuts = [];
-    const result = confirm("ショトカ初期化する？");
+    const result = confirm("初期化しますか？");
 
     if (result) {
         // OK（Yes）が押された
         console.log("初期化する");
         chrome.storage.local.set({
-        shortcuts: shortcuts.filter(shortcut => shortcut.url !== "")
+        showClock:null,
+        showSeconds:null,
+        shortcuts: null,
+        backgroundImage: null
         });
         alert("初期化したのでページを更新してね")
     } else {
