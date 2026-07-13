@@ -18,12 +18,12 @@
 ### Fixed
 - 日付表示の不具合を修正
 
-## 1.4.0 - Theme Update (Latest)
+## 1.4.0 - Theme Update
 - テーマカラーを自由に変更可能
 - ウィジェットの透明度を変更可能
 - フォントを変更可能
 
-## v1.5.0 Utility Update
+## v1.5.0 Utility Update (Latest)
 ### New
 - 一言メモ
 - ランダム背景
