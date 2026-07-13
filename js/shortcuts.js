@@ -1,6 +1,6 @@
 chrome.storage.local.get(["shortcuts"], (data) => {
 
-    const shortcuts = data.shortcuts ?? [
+    const defaultShortcuts = [
         {
             name: "YouTube",
             url: "https://www.youtube.com"
@@ -18,26 +18,31 @@ chrome.storage.local.get(["shortcuts"], (data) => {
             url: "https://chatgpt.com"
         },
     ];
-    // ここに今あるfor文
+
+    const shortcuts =
+        data.shortcuts?.length > 0
+            ? data.shortcuts
+            : defaultShortcuts;
+
     const container = document.getElementById("shortcuts");
 
     for (const shortcut of shortcuts) {
-    const host = new URL(shortcut.url).hostname;
+        const host = new URL(shortcut.url).hostname;
 
-    const a = document.createElement("a");
-    a.href = shortcut.url;
-    a.target = "_blank";
-    a.className = "widget";
+        const a = document.createElement("a");
+        a.href = shortcut.url;
+        a.target = "_blank";
+        a.className = "widget";
 
-    const img = document.createElement("img");
-    img.src = `https://www.google.com/s2/favicons?domain=${host}&sz=16`;
+        const img = document.createElement("img");
+        img.src = `https://www.google.com/s2/favicons?domain=${host}&sz=16`;
 
-    const span = document.createElement("span");
-    span.textContent = shortcut.name;
+        const span = document.createElement("span");
+        span.textContent = shortcut.name;
 
-    a.append(img, span);
-    container.appendChild(a);
-}
+        a.append(img, span);
+        container.appendChild(a);
+    }
 });
 
 

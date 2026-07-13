@@ -206,6 +206,12 @@ saveShortcuts.addEventListener("click", () => {
         shortcuts: shortcuts.filter(shortcut => shortcut.url !== "")
     });
 
+    const result = shortcuts.filter(s => s.url !== "");
+
+    chrome.storage.local.set({
+        shortcuts: result.length ? result : null
+    });
+
 });
 
 //初期化
