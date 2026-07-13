@@ -2,13 +2,13 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>ちょすTab</title>
+        <title>ちょすたぶ</title>
         <link rel="stylesheet" href="/css/option.css">
         <script src="/js/options.js" defer></script>
     </head>
     <body>
     <header>
-        <h1>ちょすTab - おぷしょん</h1>
+        <h1>ちょすたぶ - おぷしょん</h1>
     </header>
     <main>
         
@@ -28,9 +28,36 @@
             日付を表示
         </label>
 
+ 
         <h2>===🖼️背景===</h2>
         <h3>背景を変更</h3>
-            <input type="file" id="backgroundFile" accept="image/*">
+
+        <button id="resetBG">
+            背景をデフォルトに戻す
+        </button>
+
+        <input type="file" id="backgroundFile" accept="image/*">
+
+        <p>
+            ※過去5枚の背景から起動時にランダムで一つ選ばれます。<br>
+            背景をデフォルトに戻してから再び選択することで一つに絞ることができます。
+        </p>
+
+        <h2>===ユーティリティ===</h2>
+
+        <label for="searchEngine">検索エンジン</label>
+
+        <select id="searchEngine">
+            <option value="google">Google</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+            <option value="yahoo">Yahoo! JAPAN</option>
+        </select>
+
+        <label>
+            <input type="checkbox" id="showMemo">
+            メモ欄を表示
+        </label>
 
         <h2>===🔗ショートカット===</h2>
         <label>
@@ -76,6 +103,31 @@
             <option value="serif">Serif</option>
             <option value="monospace">Monospace</option>
         </select>
+
+        <h2>===おまけ===</h2>
+
+        <label>
+            <input type="checkbox" id="showGreeting">
+            あいさつを表示
+        </label>
+
+        <label>
+            <input type="checkbox" id="showTip">
+            豆知識・名言を表示
+        </label>
+
+        <h2>===💾セーブ(バックアップ)===</h2>
+
+        <button id="exportSettings">設定をエクスポート</button>
+
+        <input 
+            type="file" 
+            id="settingsFile" 
+            accept=".json" 
+            hidden
+        >
+
+        <button id="importSettings">設定をインポート</button>
         
         <h2>===🚧危険===</h2>
 

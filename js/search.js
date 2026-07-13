@@ -1,13 +1,22 @@
-const form = document.getElementById("search-form");
-const box = document.getElementById("search-box");
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const query = box.value.trim();
+    const { searchEngine = "google" } =
+        await chrome.storage.local.get("searchEngine");
 
-    if (!query) return;
+    const engines = {
+        google: "https://www.google.com/search?q=",
+        bing: "https://www.bing.com/search?q=",
+        duckduckgo: "https://duckduckgo.com/?q=",
+        yahoo: "https://search.yahoo.co.jp/search?p="
+    };
 
-    window.location.href =
-        `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    const url =
+        (engines[searchEngine] ?? engines.google) +
+        encodeURIComponent(searchInput.value);
+
+    location.href = url;
 });

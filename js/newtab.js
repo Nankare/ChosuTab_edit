@@ -7,25 +7,42 @@ let showClock = true;
     
     });
 
-chrome.storage.local.get(["backgroundImage"], (data) => {
-    console.log(data);
+//BG
+const bg = document.getElementById("background"); // ← あなたの要素に合わせて変更
 
-    const bg = document.getElementById("background");
+async function loadBackground() { //設定を反映させる
 
-    if (data.backgroundImage) {
-        bg.style.backgroundImage = `url("${data.backgroundImage}")`;
-    } else {
-        // デフォルト画像
-        bg.style.backgroundImage = 'url("/img/background.png")';
+    const data = await chrome.storage.local.get([
+        "backgroundImage",
+        "backgroundImages"
+    ]);
+
+    let image = null;
+
+    if (data.backgroundImages?.length) {
+
+        const images = data.backgroundImages;
+
+        image = images[Math.floor(Math.random() * images.length)];
+
+    } else if (data.backgroundImage) {
+
+        image = data.backgroundImage;
+
     }
-});
+
+    bg.style.backgroundImage = image
+        ? `url("${image}")`
+        : 'url("/img/background.png")';
+}
+
+loadBackground();//上のfunctionを読む=設定反映
 
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
 
-    if (changes.backgroundImage) {
-        document.getElementById("background").style.backgroundImage =
-            `url("${changes.backgroundImage.newValue}")`;
+    if (changes.backgroundImage || changes.backgroundImages) {
+        loadBackground();
     }
 });
 
@@ -61,6 +78,42 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
     document.getElementById("date").style.display =
         changes.showDate.newValue ? "" : "none";
+});
+
+chrome.storage.local.get(["showGreeting"], (data) => {
+    document.getElementById("greeting").style.display =
+        (data.showGreeting ?? true) ? "" : "none";
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" || !changes.showGreeting) return;
+
+    document.getElementById("greeting").style.display =
+        changes.showGreeting.newValue ? "" : "none";
+});
+
+chrome.storage.local.get(["showTip"], (data) => {
+    document.getElementById("tip").style.display =
+        (data.showTip ?? true) ? "" : "none";
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" || !changes.showTip) return;
+
+    document.getElementById("tip").style.display =
+        changes.showTip.newValue ? "" : "none";
+});
+
+chrome.storage.local.get(["showMemo"], (data) => {
+    document.getElementById("memo").style.display =
+        (data.showMemo ?? true) ? "" : "none";
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local" || !changes.showMemo) return;
+
+    document.getElementById("memo").style.display =
+        changes.showMemo.newValue ? "" : "none";
 });
 
 
@@ -122,4 +175,19 @@ chrome.storage.onChanged.addListener((changes, area) => {
         "--font",
         changes.font.newValue
     );
+});
+
+//memo
+const memo = document.getElementById("memo");
+
+// 読み込み
+chrome.storage.local.get("memo", (data) => {
+    memo.value = data.memo || "";
+});
+
+// 保存
+memo.addEventListener("input", () => {
+    chrome.storage.local.set({
+        memo: memo.value
+    });
 });

@@ -10,6 +10,8 @@
     <script src="/js/clock.js" defer></script>
     <script src="/js/shortcuts.js" defer></script>
     <script src="/js/date.js" defer></script>
+    <script src="/js/greeting.js" defer></script>
+    <script src="/js/tip.js" defer></script>
 </head>
 <body>
 
@@ -17,18 +19,27 @@
 
     <header>
         <!--header&検索バー-->
-        <form id="search-form" >
+        <form id="searchForm" >
         <input
             class="widget"
             type="text"
-            id="search-box"
-            placeholder="Google Search..."
+            id="searchInput"
+            placeholder="Search..."
             autocomplete="off"
         >
         </form>
     </header>
     
     <main>
+    <!--メモ-->
+        <textarea id="memo" placeholder="メモ..."></textarea>
+
+    <!--あいさつ-->
+        <div class="widget" id="greeting"></div>
+
+    <!--豆知識-->
+        <div class="widget" id="tip"></div>
+
     <!--ショトカ-->
         <div id="shortcuts"></div>
 

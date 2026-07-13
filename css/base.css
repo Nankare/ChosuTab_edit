@@ -15,7 +15,6 @@
 :root {
     --bg: #0f1115;
     --text: white;
-    --accent: #4cc2ff;
 
     --radius: 16px;
     --blur: 20px;
@@ -45,13 +44,18 @@ main {
     z-index: -1;
 }
 
+/* ヘッダー */
+header{
+    align-items: center;
+}
+
 /* 検索バー */
-#search-form {
+#searchForm {
     display: flex;
     justify-content: center;
     margin-top: 5vh;
 }
-#search-box {
+#searchInput {
     width: min(600px, 80vw);
     padding: 16px 24px;
 
@@ -154,5 +158,58 @@ main {
 
 .widget {
     background: var(--widget-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--blur));
+}
+
+#memo {
+    width: 250px;
+    height: 120px;
+
+    padding: 12px;
+
+    color: white;
+    background: var(--widget-bg);
+
+    border: none;
+    border-radius: var(--radius);
+
+    backdrop-filter: blur(var(--blur));
+
+    resize: none;
+
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    font-family: var(--font);
+    font-size: 20px;
+}
+
+/* あいさつ */
+#greeting {
+    position: fixed;
+
+    top: 120px;
+    /* bottom: 20px;
+    left: 420px; */
+
+    padding: 15px 35px;
+    border-radius: 10px;
+
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#tip {
+    position: fixed;
+
+    bottom: 20px;
+    left: 420px;
+
+    padding: 15px 35px;
+    border-radius: 10px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
 }

@@ -19,14 +19,12 @@
 - 日付表示の不具合を修正
 
 ## 1.4.0 - Theme Update (Latest)
-### New
 - テーマカラーを自由に変更可能
 - ウィジェットの透明度を変更可能
 - フォントを変更可能
 
-***
-
-## v1.5.0 Utility Update(ここから実装予定)
+## v1.5.0 Utility Update
+### New
 - 一言メモ
 - ランダム背景
 - 設定バックアップ(Export&import,Json形式)
@@ -34,7 +32,9 @@
 - 名言/豆知識表示 
 - 時間に応じたあいさつ
 
-## 1.6.0 Personalization Update 
+***
+
+## 1.6.0 Personalization Update (ここから実装予定)
 - 個人用設定追加
 - テーマ保存
 - プリセット 
