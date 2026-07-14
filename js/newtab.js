@@ -33,7 +33,7 @@ async function loadBackground() { //設定を反映させる
 
     bg.style.backgroundImage = image
         ? `url("${image}")`
-        : 'url("/img/background.png")';
+        : 'url("/img/background.webp")';
 }
 
 loadBackground();//上のfunctionを読む=設定反映
