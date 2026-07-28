@@ -32,10 +32,6 @@
         <h2>===🖼️背景===</h2>
         <h3>背景を変更</h3>
 
-        <button id="resetBG">
-            背景をデフォルトに戻す
-        </button>
-
         <input type="file" id="backgroundFile" accept="image/*">
 
         <p>
@@ -57,6 +53,11 @@
         <label>
             <input type="checkbox" id="showMemo">
             メモ欄を表示
+        </label>
+
+        <label>
+            <input type="checkbox" id="showMusic">
+            音楽プレーヤーを表示
         </label>
 
         <h2>===🔗ショートカット===</h2>
@@ -136,8 +137,16 @@
             初期化
         </button>
 
+        <button id="clearSearchHistory">
+            検索履歴を削除
+        </button>
+        
+        <button id="resetBG">
+            背景をデフォルトに戻す
+        </button>
+
         <p style="color: red;">
-            (設定がすべて初期化されます)
+            (↑設定がすべて初期化されます)
         </p>
 
     </main>

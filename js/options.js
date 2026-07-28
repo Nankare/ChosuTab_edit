@@ -10,7 +10,7 @@ const shortcutList = document.getElementById("shortcut-list");
 const addShortcut = document.getElementById("addShortcut");
 
 const saveShortcuts = document.getElementById("saveShortcuts");
-
+const showMusic = document.getElementById("showMusic");
 
 showClock.addEventListener("change", () => {
     chrome.storage.local.set({
@@ -49,7 +49,16 @@ showMemo.addEventListener("change", () => {
 });
 
 chrome.storage.local.get(
-    ["showClock", "showSeconds", "showDate", "showShortcuts", "showGreeting", "showTip", "showMemo"],
+    [
+        "showClock",
+        "showSeconds",
+        "showDate",
+        "showShortcuts",
+        "showGreeting",
+        "showTip",
+        "showMemo",
+        "showMusic"
+    ],
     (data) => {
         showClock.checked = data.showClock ?? true;
         showSeconds.checked = data.showSeconds ?? true;
@@ -58,6 +67,7 @@ chrome.storage.local.get(
         showGreeting.checked = data.showGreeting ?? true;
         showTip.checked = data.showTip ?? true;
         showMemo.checked = data.showMemo ?? true;
+        showMusic.checked = data.showMusic ?? true;
     }
 );
 
@@ -191,7 +201,9 @@ saveShortcuts.addEventListener("click", () => {
 
         if (url !== "" &&
             !url.startsWith("http://") &&
-            !url.startsWith("https://")) {
+            !url.startsWith("https://") //&&
+            //!url.startsWith("chrome://")
+            ){
             alert("URLはhttp://またはhttps://から入力してください");
             return;
             }
@@ -236,6 +248,7 @@ clearShortcuts.addEventListener("click", () => {
         showTip:null,
         showShortcuts: null,
         showMemo:null,
+        showMusic:null,
         });
         alert("初期化したのでページを更新してね")
     } else {
@@ -357,4 +370,31 @@ searchEngine.addEventListener("change", () => {
 // 読み込み
 chrome.storage.local.get(["searchEngine"], (data) => {
     searchEngine.value = data.searchEngine ?? "google";
+});
+
+//検索履歴
+const clearSearchHistory =
+    document.getElementById("clearSearchHistory");
+
+clearSearchHistory.addEventListener("click", async () => {
+
+    const result = confirm(
+        "検索履歴をすべて削除しますか？"
+    );
+
+    if (result) {
+        await chrome.storage.local.set({
+            searchHistory: null
+        });
+
+        alert("検索履歴を削除しました");
+    }
+
+});
+
+//save
+showMusic.addEventListener("change", () => {
+    chrome.storage.local.set({
+        showMusic: showMusic.checked
+    });
 });

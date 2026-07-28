@@ -188,9 +188,9 @@ header{
 #greeting {
     position: fixed;
 
-    top: 120px;
-    /* bottom: 20px;
-    left: 420px; */
+    /* top: 120px; */
+    bottom: 20px;
+    Right: 300px;
 
     padding: 15px 35px;
     border-radius: 10px;
@@ -212,4 +212,88 @@ header{
     color: white;
     font-size: 12px;
     font-weight: bold;
+}
+
+/*サジェスト*/
+#suggestions {
+    position: fixed;
+    top: 115px;
+
+    width: min(600px, 80vw);
+
+    border: none;
+    border-radius: 32px;
+
+    font-size: 18px;
+    font-family: yomogi;
+
+    color: white;
+    outline: none;
+
+    text-shadow: 0 1px 3px black;
+
+    background: var(--widget-bg);
+    backdrop-filter: blur(var(--blur));
+}
+
+.suggestion {
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* 音楽 */
+#music {
+    position: fixed;
+    bottom: 100px;
+    left: 420px;
+
+    width: 300px;
+
+    padding: 15px 35px;
+    border-radius: 10px;
+
+    background: var(--widget-bg);
+    backdrop-filter: blur(var(--blur));
+}
+
+#musicFile{
+    padding-bottom: 11px;
+    color: white;
+    font-family: yomogi;
+}
+
+#musicTitle{
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: white;
+    font-family: yomogi;
+}
+
+.musicVolume{
+    font-size: 15px;
+    color: white;
+}
+
+#selectMusic {
+    padding: 6px 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--widget-bg);
+    backdrop-filter: blur(var(--blur));
+    color: white;
+
+    font-family: inherit;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#selectMusic:hover {
+    transform: scale(1.05);
 }

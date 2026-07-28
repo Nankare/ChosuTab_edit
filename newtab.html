@@ -12,6 +12,7 @@
     <script src="/js/date.js" defer></script>
     <script src="/js/greeting.js" defer></script>
     <script src="/js/tip.js" defer></script>
+    <script src="/js/music.js" defer></script>
 </head>
 <body>
 
@@ -31,6 +32,9 @@
     </header>
     
     <main>
+    <!--サジェスト-->
+        <div id="suggestions"></div>
+
     <!--メモ-->
         <textarea id="memo" placeholder="メモ..."></textarea>
 
@@ -42,6 +46,21 @@
 
     <!--ショトカ-->
         <div id="shortcuts"></div>
+
+    <!--音楽-->
+        <div id="music">
+            <div id="musicTitle">曲が選択されていません</div>
+            <audio id="player" controls></audio>   
+            <label class="musicVolume">
+                音量
+                <input id="musicVolume" type="range" min="0" max="100" value="100">
+            </label>
+            <input type="file" id="musicFile" accept="audio/*" hidden>
+
+            <button id="selectMusic">
+                🎵 音楽を選択
+            </button>
+        </div>
 
     <!--日付-->
             <div class="widget" id="date" ></div>

@@ -191,3 +191,32 @@ memo.addEventListener("input", () => {
         memo: memo.value
     });
 });
+
+const music = document.getElementById("music");
+
+chrome.storage.local.get(
+    ["showMusic"],
+    (data) => {
+
+        if (data.showMusic ?? true) {
+            music.hidden = false;
+        } else {
+            music.hidden = true;
+        }
+
+    }
+);
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+
+    if (changes.showMusic) {
+        music.hidden = !changes.showMusic.newValue;
+    }
+});
+
+const selectMusic = document.getElementById("selectMusic");
+
+selectMusic.addEventListener("click", () => {
+    musicFile.click();
+});

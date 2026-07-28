@@ -41,17 +41,31 @@
 ### Changed
 - デフォルト背景を変更しました
 
+## 1.6.0 Utility Update Part2
+### New
+- 検索履歴の保存(サジェストに使用。表示は不可)
+- 検索履歴ベースのサジェスト
+- 検索履歴の削除機能
+- 豆知識の拡充
+- 音楽プレイヤー
+
+### Changed
+- あいさつメッセージの位置の変更
 
 ***
 
-## 1.6.0 Personalization Update (ここから実装予定)
+## 1.7.0 Personalization Update (ここから実装予定)
 - 個人用設定追加
 - テーマ保存
 - プリセット 
+- 音楽の保存及びプレイヤーUI改善
 
-## 1.7.0 Search Update
-- サジェスト
-- 検索履歴追加
+## 1.8.0 Search Update
+- Googleのサジェスト追加
+- 検索履歴の表示
 
-## 2.0.0 Next Generation Update
+***
+
+## いつか来る？
+### 2.0.0 Next Generation Update
 - 全面刷新
