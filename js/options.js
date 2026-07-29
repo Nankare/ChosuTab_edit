@@ -140,11 +140,11 @@ function createShortcutEditor(name = "", url = "") {
 
     shortcutList.appendChild(div);
 
-    //title
-    const title = document.createElement("h3");
-    title.textContent = "ショートカット";
-
-    div.appendChild(title);
+// title,いらねやつだから消す
+//    const title = document.createElement("h3");
+//    title.textContent = "ショートカット";
+//
+//    div.appendChild(title);
 
     //nameInput
     const nameInput = document.createElement("input");
@@ -163,6 +163,17 @@ function createShortcutEditor(name = "", url = "") {
     urlInput.value = url;
 
     div.appendChild(urlInput);
+
+    // 削除ボタン
+    const deleteButton = document.createElement("button");
+
+    deleteButton.textContent = "🗑️削除";
+
+    deleteButton.addEventListener("click", () => {
+        div.remove();
+    });
+
+    div.appendChild(deleteButton);
 
     //実行
     shortcutList.appendChild(div);

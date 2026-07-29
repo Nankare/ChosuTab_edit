@@ -11,34 +11,38 @@
         <h1>ちょすたぶ - おぷしょん</h1>
     </header>
     <main>
-        
+        <div class="card">
         <h2>===🕑時計/📅日付===</h2>
-        <label>
-            <input type="checkbox" id="showClock">
-            時計を表示
-        </label>
+            <label>
+                <input type="checkbox" id="showClock">
+                時計を表示
+            </label>
 
-        <label>
-            <input type="checkbox" id="showSeconds">
-            秒を表示
-        </label>
+            <label>
+                <input type="checkbox" id="showSeconds">
+                秒を表示
+            </label>
 
-        <label>
-            <input type="checkbox" id="showDate">
-            日付を表示
-        </label>
+            <label>
+                <input type="checkbox" id="showDate">
+                日付を表示
+            </label>
+        </div>
 
- 
+
+        <div class="card">
         <h2>===🖼️背景===</h2>
         <h3>背景を変更</h3>
 
         <input type="file" id="backgroundFile" accept="image/*">
 
         <p>
-            ※過去5枚の背景から起動時にランダムで一つ選ばれます。<br>
-            背景をデフォルトに戻してから再び選択することで一つに絞ることができます。
+            ※過去5枚をランダム表示<br>
+            背景をデフォルトに戻してから再び選択することで1枚のみ表示可能
         </p>
+        </div>
 
+        <div class="card">
         <h2>===ユーティリティ===</h2>
 
         <label for="searchEngine">検索エンジン</label>
@@ -59,7 +63,9 @@
             <input type="checkbox" id="showMusic">
             音楽プレーヤーを表示
         </label>
+        </div>
 
+        <div class="card">
         <h2>===🔗ショートカット===</h2>
         <label>
             <input type="checkbox" id="showShortcuts">
@@ -80,7 +86,10 @@
             ※URLは https:// または http:// から入力してください<br>
             全部空欄にするとデフォルトが表示されます
         </p>
+        </div>
 
+
+        <div class="card">
         <h2>===🎨テーマ===</h2>
 
         <h3>カラー</h3>
@@ -105,7 +114,9 @@
             <option value="serif">Serif</option>
             <option value="monospace">Monospace</option>
         </select>
+        </div>
 
+        <div class="card">
         <h2>===おまけ===</h2>
 
         <label>
@@ -117,7 +128,9 @@
             <input type="checkbox" id="showTip">
             豆知識・名言を表示
         </label>
+        </div>
 
+        <div class="card">
         <h2>===💾セーブ(バックアップ)===</h2>
 
         <button id="exportSettings">設定をエクスポート</button>
@@ -130,7 +143,9 @@
         >
 
         <button id="importSettings">設定をインポート</button>
-        
+        </div>
+
+        <div class="Red_card">
         <h2>===🚧危険===</h2>
 
         <button id="clearShortcuts">
@@ -148,6 +163,7 @@
         <p style="color: red;">
             (↑設定がすべて初期化されます)
         </p>
+        </div>
 
     </main>
     <footer>

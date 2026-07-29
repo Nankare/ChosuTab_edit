@@ -23,43 +23,40 @@ async function saveSearchHistory(query) {
     });
 }
 
-searchInput.addEventListener("input", async () => {
-
-    const text = searchInput.value.trim();
+async function updateSuggestions(query = "") {
+    const { searchHistory = [] } =
+        await chrome.storage.local.get("searchHistory");
 
     suggestions.innerHTML = "";
 
-    if (!text) return;
+    const keyword = query.toLowerCase();
 
+    const history = searchHistory
+        .slice()
+        .reverse()
+        .filter(item =>
+            keyword === "" ||
+            item.toLowerCase().startsWith(keyword)
+        )
+        .slice(0, 5);
 
-    const data = await chrome.storage.local.get("searchHistory");
-
-    const history = data.searchHistory ?? [];
-
-
-    const results = history.filter(item =>
-        item.toLowerCase().startsWith(text.toLowerCase())
-    );
-
-
-    for (const result of results) {
-
+    for (const item of history) {
         const div = document.createElement("div");
 
-        div.textContent = "↻ " + result;
-
         div.className = "suggestion";
-
+        div.textContent = "↻ " + item;
 
         div.addEventListener("click", () => {
-            searchInput.value = result;
+            searchInput.value = item;
             suggestions.innerHTML = "";
         });
 
-
         suggestions.appendChild(div);
     }
+}
 
+searchInput.addEventListener("input", () => {
+    updateSuggestions(searchInput.value);
 });
 
 searchForm.addEventListener("submit", async (e) => {
@@ -82,4 +79,16 @@ searchForm.addEventListener("submit", async (e) => {
         encodeURIComponent(searchInput.value);
 
     location.href = url;
+});
+
+//フォーカスしたら表示するよ
+searchInput.addEventListener("focus", () => {
+    updateSuggestions(searchInput.value);
+});
+
+//外をクリックしたら閉じるよ
+document.addEventListener("click", (e) => {
+    if (!searchForm.contains(e.target)) {
+        suggestions.innerHTML = "";
+    }
 });

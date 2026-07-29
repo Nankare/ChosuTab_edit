@@ -11,7 +11,7 @@ body {
     margin: 0;
 }
 
-main {
+.card {
     width: 700px;
     margin: 30px auto;
     padding: 20px;
@@ -21,6 +21,16 @@ main {
     background: rgba(255,255,255,.08);
 }
 
+.Red_card {
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: rgba(255, 0, 0, 0.205);
+}
+
 .shortcut-setting {
     display: flex;
     flex-direction: column;
@@ -28,6 +38,14 @@ main {
     gap: 8px;
 
     margin-bottom: 24px;
+
+    width: 650px;
+    margin: 30px auto;
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: rgba(145, 98, 98, 0.205);
 }
 
 .shortcut-setting input {
@@ -39,5 +57,9 @@ a{
 }
 
 input{
+    font-family: yomogi;
+}
+
+button{
     font-family: yomogi;
 }
