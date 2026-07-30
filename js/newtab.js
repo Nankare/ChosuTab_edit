@@ -8,40 +8,25 @@ let showClock = true;
     });
 
 //BG
-const bg = document.getElementById("background"); // ← あなたの要素に合わせて変更
+const bg = document.getElementById("background");
 
-async function loadBackground() { //設定を反映させる
+async function loadBackground() {
 
-    const data = await chrome.storage.local.get([
-        "backgroundImage",
-        "backgroundImages"
-    ]);
+    const data = await chrome.storage.local.get("backgroundImage");
 
-    let image = null;
-
-    if (data.backgroundImages?.length) {
-
-        const images = data.backgroundImages;
-
-        image = images[Math.floor(Math.random() * images.length)];
-
-    } else if (data.backgroundImage) {
-
-        image = data.backgroundImage;
-
-    }
+    const image = data.backgroundImage;
 
     bg.style.backgroundImage = image
         ? `url("${image}")`
         : 'url("/img/background.webp")';
 }
 
-loadBackground();//上のfunctionを読む=設定反映
+loadBackground();
 
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
 
-    if (changes.backgroundImage || changes.backgroundImages) {
+    if (changes.backgroundImage) {
         loadBackground();
     }
 });

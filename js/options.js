@@ -78,50 +78,29 @@ input.addEventListener("change", () => {
     const reader = new FileReader();
 
     reader.onload = async () => {
-
         const image = reader.result;
 
-        const data = await chrome.storage.local.get("backgroundImages");
-        const images = data.backgroundImages || [];
-
-        // 重複防止
-        if (images.includes(image)) {
-            console.log("この画像は既に登録されています");
-            return;
-        }
-
-        // 追加
-        images.push(image);
-
-        // 最大5枚まで（古いものから削除）
-        while (images.length > 5) {
-            images.shift();
-        }
-
         await chrome.storage.local.set({
-            backgroundImage: image,
-            backgroundImages: images
+            backgroundImage: image
         });
 
-        console.log(`背景を保存しました！（現在${images.length}枚）`);
+        console.log("背景を保存しました");
     };
 
     reader.readAsDataURL(file);
 });
 
-resetBG.addEventListener("click", () => {
+resetBG.addEventListener("click", async () => {
 
     const result = confirm("背景を初期化します。よろしいですか？");
 
     if (result) {
-        // OK（Yes）が押された
-        chrome.storage.local.set({
-        backgroundImage: null,
-        backgroundImages: null
+        await chrome.storage.local.set({
+            backgroundImage: null
         });
-        alert("背景を初期化しました。")
+
+        alert("背景を初期化しました");
     } else {
-        // キャンセル（No）が押された
         console.log("背景リセットキャンセル");
     }
 
@@ -153,6 +132,8 @@ function createShortcutEditor(name = "", url = "") {
     nameInput.placeholder = "名前";
     nameInput.value = name;
 
+    nameInput.name = "shortcutName"
+
     div.appendChild(nameInput); 
 
     //urlInput
@@ -161,6 +142,8 @@ function createShortcutEditor(name = "", url = "") {
     urlInput.type = "url";
     urlInput.placeholder = "https://example.com";
     urlInput.value = url;
+
+    urlInput.name = "shortcutURL"
 
     div.appendChild(urlInput);
 
@@ -253,7 +236,6 @@ clearShortcuts.addEventListener("click", () => {
         widgetOpacity: null,
         font: null,
         backgroundImage: null,
-        backgroundImages: null,
         showDate: null,
         showGreeting: null,
         showTip:null,
@@ -317,9 +299,16 @@ chrome.storage.local.get(["font"], (data) => {
 const exportSettings = document.getElementById("exportSettings");
 
 exportSettings.addEventListener("click", async () => {
-    const settings = await chrome.storage.local.get();
 
-    const json = JSON.stringify(settings, null, 2);
+    const storage = await chrome.storage.local.get();
+
+    const exportData = {
+        format: "ChosuTab_ExportFile",
+        format_version: 1,
+        settings: storage
+    };
+
+    const json = JSON.stringify(exportData, null, 2);
 
     const blob = new Blob(
         [json],
@@ -330,7 +319,7 @@ exportSettings.addEventListener("click", async () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Chosutab-backup.json";
+    a.download = "ChosuTab-backup.json";
     a.click();
 
     URL.revokeObjectURL(url);
@@ -352,18 +341,82 @@ fileInput.addEventListener("change", () => {
     const reader = new FileReader();
 
     reader.onload = async () => {
-        try {
-            const settings = JSON.parse(reader.result);
+    try {
+        const data = JSON.parse(reader.result);
+        let settings;
 
-            await chrome.storage.local.set(settings);
+        if (data.format === "ChosuTab_ExportFile") {
+            // 新形式
+            settings = data.settings;
 
-            alert("設定を復元しました！");
-            location.reload();
+            if (!settings) {
+                console.log("settingsがありません", data);
+                alert("設定データがありません");
+                return;
+            }
 
-        } catch (e) {
-            alert("無効なJSONファイルです");
-            console.error(e);
+        } else {
+            // 旧形式
+            settings = data;
+            alert("旧形式のフォーマットです。バックアップの再作成を推奨します。");
         }
+
+        // whitelist(キー追加したらホワリスも追加すること)
+        const allowedKeys = [
+            "backgroundImage",
+            "font",
+            "memo",
+            "musicVolume",
+            "searchEngine",
+            "searchHistory",
+            "shortcuts",
+            "showClock",
+            "showDate",
+            "showGreeting",
+            "showMemo",
+            "showMusic",
+            "showSeconds",
+            "showShortcuts",
+            "showTip",
+            "widgetColor",
+            "widgetOpacity"
+        ];
+
+        const filteredSettings = {};
+
+        for (const key of allowedKeys) {
+            if (settings[key] !== undefined) {
+                filteredSettings[key] = settings[key];
+            }
+        }
+
+        // ChosuTabの設定が1つもない
+        if (Object.keys(filteredSettings).length === 0) {
+            alert("ちょすたぶのExportファイルではありません");
+            return;
+        }
+
+        const result = confirm(
+            "現在の設定をインポートした設定で上書きします。よろしいですか？"
+        );
+
+        if (!result) {
+            console.log("Importキャンセル");
+            return;
+        }
+
+
+        await chrome.storage.local.clear();
+        await chrome.storage.local.set(filteredSettings);
+
+        alert("設定を上書きしました！");
+        location.reload();
+
+    } catch (e) {
+        alert("無効なJSONファイルです");
+
+        console.error(e);
+    }
     };
 
     reader.readAsText(file);

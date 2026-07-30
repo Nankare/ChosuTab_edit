@@ -33,7 +33,6 @@ async function updateSuggestions(query = "") {
 
     const history = searchHistory
         .slice()
-        .reverse()
         .filter(item =>
             keyword === "" ||
             item.toLowerCase().startsWith(keyword)
