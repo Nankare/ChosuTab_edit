@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ちょすたぶ</title>
+        <link rel="stylesheet" href="/css/popup.css">
+        <script src="/js/options.js" defer></script>
+    </head>
+    <body>
+    <header>
+        <h1>ちょすたぶ - Miniおぷしょん</h1>
+    </header>
+    <main>
+        <div class="card">
+        <h2>===表示/非表示===</h2>
+            <label>
+                <input type="checkbox" id="showClock">
+                時計を表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showSeconds">
+                秒を表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showDate">
+                日付を表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showShortcuts">
+                ショートカットを表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showMemo">
+                メモ欄を表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showMusic">
+                音楽プレーヤーを表示
+            </label>  
+
+            <label>
+            <input type="checkbox" id="showGreeting">
+            あいさつを表示
+            </label>
+
+            <label>
+                <input type="checkbox" id="showTip">
+                豆知識・名言を表示
+            </label>      
+        </div>
+
+
+        <div class="card">
+        <h2>===🖼️背景===</h2>
+        <h3>背景を変更</h3>
+
+        <input type="file" id="backgroundFile" accept="image/*">
+
+        <p>
+            ※過去5枚をランダム表示<br>
+            背景をデフォルトに戻してから再び選択することで1枚のみ表示可能
+        </p>
+        </div>
+
+        <div class="card">
+        <h2>===ユーティリティ===</h2>
+
+        <label for="searchEngine">検索エンジン</label>
+
+        <select id="searchEngine">
+            <option value="google">Google</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+            <option value="yahoo">Yahoo! JAPAN</option>
+        </select>
+        </div>
+
+
+
+        <div class="card">
+        <h2>===🎨テーマ===</h2>
+
+        <label>
+            カラー
+            <input type="color" id="widgetColor">
+        </label>
+
+        <label>透明度
+        <input
+            type="range"
+            id="widgetOpacity"
+            min="0"
+            max="100"
+            value="40">
+        </label>
+
+    </main>
+    <footer>
+        デフォ背景:<a href="https://photock.jp/">フォトック</a>様
+    </footer>
+</body>
+</html>

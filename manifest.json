@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ちょすたぶ・えでぃっと",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "新しいタブ(スタートページ)を自由にカスタマイズできます",
 
   "permissions": [
@@ -24,6 +24,6 @@
   },
 
   "action": {
-  "default_popup": "options.html"
+  "default_popup": "popup.html"
   }
 }

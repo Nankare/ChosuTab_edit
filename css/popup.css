@@ -1,0 +1,38 @@
+/* メイン設定 */
+@font-face {
+    font-family: yomogi;
+    src: url(/fonts/Yomogi-Regular.ttf);
+}
+body {
+    width: 360px;
+    height: 540px;
+    background: #202124;
+    color: white;
+    font-family: yomogi;
+
+    margin: 0;
+}
+
+.card {
+    width: 300px;
+    margin: 30px auto;
+    padding: 20px;
+
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(255,255,255,.08);
+}
+
+a{
+    color: blueviolet;
+}
+
+input{
+    font-family: yomogi;
+}
+
+button{
+    font-family: yomogi;
+}

@@ -74,6 +74,7 @@
 - Import前の確認ダイアログ追加
 - Options画面の操作性を改善
 - Import時のwhitelist追加
+- ツールバーのPopupレイアウトを改善しました
 
 ## Fixed
 - input要素にname属性を追加（Chrome警告対応）
