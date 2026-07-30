@@ -1,16 +1,34 @@
+//ひょうじ
 const showClock = document.getElementById("showClock");
 const showSeconds = document.getElementById("showSeconds");
 const showDate = document.getElementById("showDate");
 const showGreeting = document.getElementById("showGreeting");
 const showTip = document.getElementById("showTip");
-const input = document.getElementById("backgroundFile");
 const showMemo  = document.getElementById("showMemo");
+const showMusic = document.getElementById("showMusic");
 
+//はいけい
+const backgroundFile = document.getElementById("backgroundFile");
+const resetBG = document.getElementById("resetBG");
+
+//しょーとかっと
 const shortcutList = document.getElementById("shortcut-list");
 const addShortcut = document.getElementById("addShortcut");
-
 const saveShortcuts = document.getElementById("saveShortcuts");
-const showMusic = document.getElementById("showMusic");
+
+//うぃじぇっと
+const widgetColor = document.getElementById("widgetColor");
+const widgetOpacity = document.getElementById("widgetOpacity");
+
+//ゆーてぃりてぃー
+const clearAll = document.getElementById("clearAll");
+const exportSettings = document.getElementById("exportSettings");
+const importSettings = document.getElementById("importSettings");
+const fileInput = document.getElementById("settingsFile");
+const font = document.getElementById("font");
+const searchEngine = document.getElementById("searchEngine");
+const clearSearchHistory = document.getElementById("clearSearchHistory");
+
 
 showClock.addEventListener("change", () => {
     chrome.storage.local.set({
@@ -71,8 +89,8 @@ chrome.storage.local.get(
     }
 );
 
-input.addEventListener("change", () => {
-    const file = input.files[0];
+backgroundFile.addEventListener("change", () => {
+    const file = backgroundFile.files[0];
     if (!file) return;
 
     const reader = new FileReader();
@@ -89,6 +107,8 @@ input.addEventListener("change", () => {
 
     reader.readAsDataURL(file);
 });
+
+
 
 resetBG.addEventListener("click", async () => {
 
@@ -113,6 +133,8 @@ showShortcuts.addEventListener("change", () => {
 });
 
 function createShortcutEditor(name = "", url = "") {
+
+    if (!shortcutList) return;
 
     const div = document.createElement("div");
     div.className = "shortcut-setting";
@@ -177,13 +199,16 @@ chrome.storage.local.get(["shortcuts"], (data) => {
 });
 
 //入力欄の追加
-addShortcut.addEventListener("click", () => {
-    createShortcutEditor("", "");
-});
+if (addShortcut) {
+    addShortcut.addEventListener("click", () => {
+        createShortcutEditor("", "");
+    });
+}
 
 
 //保存
-saveShortcuts.addEventListener("click", () => {
+if (saveShortcuts) {
+    saveShortcuts.addEventListener("click", () => {
 
     const editors = document.querySelectorAll(".shortcut-setting");
     const shortcuts = [];
@@ -218,16 +243,18 @@ saveShortcuts.addEventListener("click", () => {
         shortcuts: result.length ? result : null
     });
 
-});
+    });
+}
 
 //初期化
-clearShortcuts.addEventListener("click", () => {
+if (clearAll){
+    clearAll.addEventListener("click", () => {
 
     const result = confirm("初期化しますか？");
 
     if (result) {
         // OK（Yes）が押された
-        console.log("初期化する");
+        console.log("初期化");
         chrome.storage.local.set({
         showClock:null,
         showSeconds:null,
@@ -249,12 +276,12 @@ clearShortcuts.addEventListener("click", () => {
         console.log("キャンセル");
     }
 
-});
+    });
+}
 
 //theme
 //color
-const widgetColor = document.getElementById("widgetColor");
-const widgetOpacity = document.getElementById("widgetOpacity");
+
 
 widgetColor.addEventListener("change", saveWidgetStyle);
 widgetOpacity.addEventListener("input", saveWidgetStyle);
@@ -279,26 +306,28 @@ chrome.storage.local.get(
 );
 
 //font
-const font = document.getElementById("font");
-
-font.addEventListener("change", () => {
+if (font){
+    font.addEventListener("change", () => {
     chrome.storage.local.set({
         font: font.value
     });
-});
+    });
+}
 
 chrome.storage.local.get(["font"], (data) => {
 
     const selectedFont = data.font ?? "yomogi";
 
-    font.value = selectedFont;
+
+    if (font){
+        font.value = selectedFont;
+    }
 
 });
 
 //jsonexport
-const exportSettings = document.getElementById("exportSettings");
-
-exportSettings.addEventListener("click", async () => {
+if (exportSettings){
+    exportSettings.addEventListener("click", async () => {
 
     const storage = await chrome.storage.local.get();
 
@@ -323,17 +352,18 @@ exportSettings.addEventListener("click", async () => {
     a.click();
 
     URL.revokeObjectURL(url);
-});
+    });
+}
 
 //import
-const importSettings = document.getElementById("importSettings");
-const fileInput = document.getElementById("settingsFile");
+if (importSettings){
+    importSettings.addEventListener("click", () => {
+        fileInput.click();
+    });
+}
 
-importSettings.addEventListener("click", () => {
-    fileInput.click();
-});
-
-fileInput.addEventListener("change", () => {
+if (fileInput){
+    fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
 
     if (!file) return;
@@ -420,9 +450,8 @@ fileInput.addEventListener("change", () => {
     };
 
     reader.readAsText(file);
-});
-
-const searchEngine = document.getElementById("searchEngine");
+    });
+}
 
 // 保存
 searchEngine.addEventListener("change", () => {
@@ -437,9 +466,6 @@ chrome.storage.local.get(["searchEngine"], (data) => {
 });
 
 //検索履歴
-const clearSearchHistory =
-    document.getElementById("clearSearchHistory");
-
 clearSearchHistory.addEventListener("click", async () => {
 
     const result = confirm(
