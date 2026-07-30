@@ -141,12 +141,6 @@ function createShortcutEditor(name = "", url = "") {
 
     shortcutList.appendChild(div);
 
-// title,いらねやつだから消す
-//    const title = document.createElement("h3");
-//    title.textContent = "ショートカット";
-//
-//    div.appendChild(title);
-
     //nameInput
     const nameInput = document.createElement("input");
 
@@ -376,7 +370,7 @@ if (fileInput){
         let settings;
 
         if (data.format === "ChosuTab_ExportFile") {
-            // 新形式
+            // FormatVer.1の処理
             settings = data.settings;
 
             if (!settings) {
@@ -386,7 +380,7 @@ if (fileInput){
             }
 
         } else {
-            // 旧形式
+            // 後方互換性ぞーん(v1.6.1以前)
             settings = data;
             alert("旧形式のフォーマットです。バックアップの再作成を推奨します。");
         }
