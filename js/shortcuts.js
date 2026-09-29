@@ -31,7 +31,7 @@ chrome.storage.local.get(["shortcuts"], (data) => {
 
         const a = document.createElement("a");
         a.href = shortcut.url;
-        a.target = "_blank";
+//        a.target = "_blank";
         a.className = "widget";
 
         const img = document.createElement("img");
