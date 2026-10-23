@@ -1,0 +1,14 @@
+# テスト用データ
+test/
+tests/fixtures/
+*.test.json
+Json_test/
+
+# OS・エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+
+# 一時ファイル
+*.tmp
+*.log
