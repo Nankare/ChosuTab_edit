@@ -65,10 +65,10 @@
 - ショートカットの視認性改善
 
 ## 1.6.2 (Latest)
-## New
+### New
 - v1.6.0以前のExportファイルを自動変換するようにしました
 
-## Changed
+### Changed
 - バックアップのJsonの形式を変更(後方互換性あり)
 - 不正なJSONのチェック強化
 - Import前の確認ダイアログ追加
@@ -76,7 +76,7 @@
 - Import時のwhitelist追加
 - ツールバーのPopupレイアウトを改善しました
 
-## Fixed
+### Fixed
 - PopupページでOptionsUI専用処理が実行されエラーになる問題を修正
 - input要素にname属性を追加（Chrome警告対応）
 - サジェストの表示順が逆になっていたのを修正
@@ -87,20 +87,27 @@
 ### Notice
 - 旧形式のバックアップ(Json)は非推奨になりました。再度バックアップを取ろう
 
+## 1.7.0 Search Update
+### New
+- Googleのサジェスト追加
+- ↓・↑・Enter・Escキーでサジェストを移動できるようにしました
+- サジェストの左側に↖を追加し、検索バーに入力できるようにしました
+
+### Changed
+- ↑の追加によって、サジェストを押したときの挙動を「入力」から「ページ移動」に変更しました。
+- 下記のFixedによって検索バーのPlaceholderの文言を'Search or input URL...'に変更
+
+### Fixed
+- URLを入力したときに"https://検索エンジン?q=URL"となってしまう問題を修正
 
 ***
 
-## 1.7.0 Personalization Update (ここから実装予定)
+## 1.8.0 Personalization Update (ここから実装予定)
 - 個人用設定追加
 - テーマ保存
 - プリセット 
 - 音楽の保存及びプレイヤーUI改善
 
-## 1.8.0 Search Update
-- Googleのサジェスト追加
-- 検索履歴の表示
-
-***
 
 ## いつか来る？
 ### 2.0.0 Next Generation Update

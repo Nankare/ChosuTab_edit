@@ -297,3 +297,39 @@ header{
 #selectMusic:hover {
     transform: scale(1.05);
 }
+
+.suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 16px 8px 32px;
+    cursor: pointer;
+}
+
+.suggestion-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.suggestion-add {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    padding: 6px 12px;
+    color: white;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+.suggestion-add:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.suggestion.selected {
+    background: rgba(255, 255, 255, 0.2);
+}
